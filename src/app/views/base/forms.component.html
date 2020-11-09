@@ -1,0 +1,115 @@
+<div class="animated fadeIn">
+    <form [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong><span *ngIf="mode=='add'"> Add New </span> <span *ngIf="mode=='edit'">Update </span> User</strong>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="isSubmitted">
+                            <div class="alert alert-success" *ngIf="isSuccess">
+                                <strong> {{_statusMsg}}</strong>.
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="!isSuccess ">
+                                <strong>{{_statusMsg}}</strong>
+                            </div>
+                        </div>
+                        <form></form>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" value="" name="name" formControlName="name" class="form-control" [ngClass]="{'is-invalid': userForm.get('name').touched && userForm.get('name').invalid}">
+
+                            <div class="invalid-feedback">
+                                <div>Please Enter Name</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vat">Email</label>
+                            <input type="text" value="" name="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid': userForm.get('email').touched && userForm.get('email').invalid}">
+
+                            <div class="invalid-feedback">
+                                <div>Please Enter Email</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vat">Password</label>
+                            <input type="text" value="" name="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': userForm.get('password').touched && userForm.get('password').invalid}">
+
+                            <div class="invalid-feedback">
+                                <div>Please Enter Password</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vat">Mobile No</label>
+                            <input type="text" value="" name="mobileNo" formControlName="mobileNo" class="form-control" [ngClass]="{'is-invalid': userForm.get('mobileNo').touched && userForm.get('mobileNo').invalid}">
+
+                            <div class="invalid-feedback">
+                                <div>Please Enter Mobile No</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street">Address</label>
+                            <input type="text" value="" name="address" formControlName="address" class="form-control" [ngClass]="{'is-invalid': userForm.get('address').touched && userForm.get('address').invalid}">
+
+                            <div class="invalid-feedback">
+                                <div>Please Enter Address</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <input type="submit" class="btn btn-primary pull-right" value="Submit">
+                    </div>
+                </div>
+
+            </div>
+            <!--/.col-->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-align-justify"></i> User Table
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped table-sm">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile No</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let u of userDataList">
+                                <tr>
+                                    <td>{{u.id}}</td>
+                                    <td>{{u.name}}</td>
+                                    <td>{{u.email}}</td>
+                                    <td>{{u.mobileNo}}</td>
+                                    <td>{{u.password}}</td>
+                                    <td>{{u.address}}</td>
+                                    <td>
+                                        <button class="btn btn-brand btn-sm btn-primary" type="button" style="margin-bottom: 4px" (click)="editUser(u)">
+                                      <i class="fa fa-pencil-square-o"></i>
+                                  </button>
+                                        <button class="btn btn-brand btn-sm btn-youtube" type="button" (click)="deleteFieldValue(u.id)" style="margin-bottom: 4px">
+                                      <i class="fa fa-close"></i>
+                                  </button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--/.col-->
+        </div>
+    </form>
+</div>
